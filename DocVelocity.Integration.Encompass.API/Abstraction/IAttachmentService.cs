@@ -7,6 +7,7 @@ namespace DocVelocity.Integration.Encompass.API
     {
         EFolderAttachmentContract GetAttachment(string attachmentId, string loanId);
         List<EFolderAttachmentContract> GetAttachments(string loanId);
-        string UploadAttachment(string loanId, string title, string extension, byte[] content);
+        string UploadAttachment(string loanId, string title, string fileWithExtension, byte[] content);
+        string UploadAttachment(string loanId, string documentId, string title, string fileWithExtension, byte[] content);
     }
 }

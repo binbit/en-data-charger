@@ -22,7 +22,7 @@ namespace DocVelocity.Integration.Encompass.API.Services
         public string CreateLoan(LoanContract loan)
         {
             var response = _client.CreateLoanWithHttpInfo(loanContract: loan, view: "id");
-            return response.Headers["Location"];
+            return response.Headers["Location"].Split('/')[3];
         }
 
         public void DeleteLoan(string id)

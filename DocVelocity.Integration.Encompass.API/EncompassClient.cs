@@ -29,6 +29,8 @@ namespace DocVelocity.Integration.Encompass.API
             var token = AccessToken.GetAccessToken(credentials, configuration.ApiClientId, configuration.ClientSecret);
 
             LoanService = new LoanService(token);
+            DocumentService = new DocumentService(token);
+            AttachmentService = new AttachmentService(token);
         }
     }
 }
