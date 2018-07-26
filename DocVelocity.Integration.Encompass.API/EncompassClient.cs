@@ -26,6 +26,7 @@ namespace DocVelocity.Integration.Encompass.API
                 UserName = configuration.Username
             };
 
+            //todo:create token manager to keep token alive or check it status and revoke
             var token = AccessToken.GetAccessToken(credentials, configuration.ApiClientId, configuration.ClientSecret);
 
             LoanService = new LoanService(token);
