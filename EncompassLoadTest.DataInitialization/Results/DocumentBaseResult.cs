@@ -5,13 +5,13 @@ using EncompassLoadTest.DataInitialization.Results;
 
 namespace EncompassLoadTest.DataInitialization
 {
-    public class DocumentResult : Result<AttachmentResult, AttachmentError>
+    public class DocumentBaseResult : BaseResult<AttachmentBaseResult, AttachmentError>
     {
         public string DocumentId => EntityId;
-        public IReadOnlyCollection<AttachmentResult> AttachmentResults => ResultCollection;
+        public IReadOnlyCollection<AttachmentBaseResult> AttachmentResults => ResultCollection;
         public IReadOnlyCollection<AttachmentError> AttachmentErrors => ErrorCollection;
 
-        public DocumentResult(string documentId) : base(documentId)
+        public DocumentBaseResult(string documentId) : base(documentId)
         {
         }
     }

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncompassLoadTest", "EncompassLoadTest\EncompassLoadTest.csproj", "{0C5C9106-02D8-4605-91D6-88B81C4544A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncompassLoadTest", "EncompassLoadTest\EncompassLoadTest.csproj", "{0C5C9106-02D8-4605-91D6-88B81C4544A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncompassLoadTest.DataInitialization", "EncompassLoadTest.DataInitialization\EncompassLoadTest.DataInitialization.csproj", "{FCF20856-6608-42A1-817C-CBA41A0BD60B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncompassLoadTest.DataInitialization", "EncompassLoadTest.DataInitialization\EncompassLoadTest.DataInitialization.csproj", "{FCF20856-6608-42A1-817C-CBA41A0BD60B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncompassLoadTest.DataAnalysis", "EncompassLoadTest.DataAnalysis\EncompassLoadTest.DataAnalysis.csproj", "{EE5DAC82-7F3D-42C8-9CBA-7410B92C94AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncompassLoadTest.DataAnalysis", "EncompassLoadTest.DataAnalysis\EncompassLoadTest.DataAnalysis.csproj", "{EE5DAC82-7F3D-42C8-9CBA-7410B92C94AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocVelocity.Integration.Encompass.API", "DocVelocity.Integration.Encompass.API\DocVelocity.Integration.Encompass.API.csproj", "{40C23C58-43DD-411B-9D81-7BDA310E50AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocVelocity.Integration.Encompass.API", "DocVelocity.Integration.Encompass.API\DocVelocity.Integration.Encompass.API.csproj", "{40C23C58-43DD-411B-9D81-7BDA310E50AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

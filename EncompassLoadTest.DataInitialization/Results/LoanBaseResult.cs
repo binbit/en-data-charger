@@ -3,13 +3,13 @@ using EncompassLoadTest.DataInitialization.Errors;
 
 namespace EncompassLoadTest.DataInitialization
 {
-    public class LoanResult : Result<DocumentResult, DocumentError>
+    public class LoanBaseResult : BaseResult<DocumentBaseResult, DocumentError>
     {
         public string LoanId => EntityId;
-        public IReadOnlyCollection<DocumentResult> DocumentResults => ResultCollection;
+        public IReadOnlyCollection<DocumentBaseResult> DocumentResults => ResultCollection;
         public IReadOnlyCollection<DocumentError> DocumentErrors => ErrorCollection;
 
-        public LoanResult(string loanId) : base(loanId)
+        public LoanBaseResult(string loanId) : base(loanId)
         {
         }
     }

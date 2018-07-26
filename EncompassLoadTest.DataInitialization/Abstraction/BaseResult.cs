@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EncompassLoadTest.DataInitialization
 {
-    public abstract class Result<TInnerResult, TError> : IResult<TInnerResult, TError>
+    public abstract class BaseResult<TInnerResult, TError> : IResult<TInnerResult, TError>
         where TError : ResultError
     {
         protected string EntityId { get; }
@@ -12,7 +12,7 @@ namespace EncompassLoadTest.DataInitialization
 
         protected List<TError> ErrorCollection { get; }
 
-        protected Result(string entityId)
+        protected BaseResult(string entityId)
         {
             CreationDate = DateTime.UtcNow;
             EntityId = entityId;
