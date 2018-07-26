@@ -10,9 +10,9 @@ namespace EncompassLoadTest.DataInitialization
         public string DocumentTitle { get; set; }
         public int DocumentCountPerLoan { get; set; }
         public TimeSpan DocumentCreationDelay { get; set; }
+        public string AttachmentTitle { get; set; }
         public int AttachmentCountPerDocument { get; set; }
         public TimeSpan AttachmentCreationDelay { get; set; }
-        public string DocumentName { get; set; }
         public string AttachmentFilePath { get; set; }
     }
 }
