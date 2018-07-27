@@ -1,20 +1,22 @@
 ﻿using DocVelocity.Integration.Encompass.API;
 using Elli.Api.Loans.Model;
+using EncompassLoadTest.DataInitialization.Results;
 
 namespace EncompassLoadTest.DataInitialization.Creators
 {
-    public class LoanCreator : BaseCreator<LoanContract, LoanBaseResult>
+    public class LoanCreator : BaseCreator<LoanContract>
     {
-        public LoanCreator(IEncompassClient client) : base(client)
+        public LoanCreator(IEncompassClient client, LoanContract data, string instanceId) 
+            : base(client, data, instanceId)
         {
         }
         
-        public override Try<LoanBaseResult> Create()
+        public override Try<IResult> Create()
         {
             return () =>
             {
                 var loanId = Client.LoanService.CreateLoan(Data);
-                return new LoanBaseResult(loanId);
+                return new LoanResult(loanId);
             };
         }
     }

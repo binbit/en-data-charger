@@ -2,11 +2,10 @@
 
 namespace EncompassLoadTest.DataInitialization
 {
-    public interface IResult<in TInnerResult, in TError> 
-        where TError : ResultError
+    public interface IResult
     {
         DateTime CreationDate { get; }
-        void AddResult(TInnerResult result);
-        void AddError(TError error);
+        void AddResult(IResult result);
+        void AddError(ResultError error);
     }
 }

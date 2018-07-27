@@ -2,10 +2,10 @@
 
 namespace EncompassLoadTest.DataInitialization.Results
 {
-    public class AttachmentBaseResult : BaseResult<NoResult, NoError>
+    public class AttachmentResult : BaseResult
     {
         public string AttachmentId => EntityId;
-        public AttachmentBaseResult(string attachmentId) : base(attachmentId)
+        public AttachmentResult(string attachmentId) : base(attachmentId)
         {
         }
     }

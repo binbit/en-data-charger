@@ -3,20 +3,21 @@ using Elli.Api.Loans.EFolder.Model;
 
 namespace EncompassLoadTest.DataInitialization.Creators
 {
-    public class DocumentCreator : BaseCreator<EFolderDocumentContract, DocumentBaseResult>
+    public class DocumentCreator : BaseCreator<EFolderDocumentContract>
     {
         public string LoanId => ParentId;
 
-        public DocumentCreator(IEncompassClient client) : base(client)
+        public DocumentCreator(IEncompassClient client, EFolderDocumentContract data, string loanId) 
+            : base(client, data, loanId)
         {
         }
 
-        public override Try<DocumentBaseResult> Create()
+        public override Try<IResult> Create()
         {
             return () =>
             {
                 var documentId = Client.DocumentService.CreateDocument(ParentId, Data);
-                return new DocumentBaseResult(documentId);
+                return new DocumentResult(documentId);
             };
         }
     }

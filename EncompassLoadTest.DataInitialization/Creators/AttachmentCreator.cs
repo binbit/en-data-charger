@@ -3,13 +3,14 @@ using EncompassLoadTest.DataInitialization.Results;
 
 namespace EncompassLoadTest.DataInitialization.Creators
 {
-    public class AttachmentCreator : BaseCreator<AttachmentData, AttachmentBaseResult>
+    public class AttachmentCreator : BaseCreator<AttachmentData>
     {
-        public AttachmentCreator(IEncompassClient client) : base(client)
+        public AttachmentCreator(IEncompassClient client, AttachmentData data, string loanId) 
+            : base(client, data, loanId)
         {
         }
 
-        public override Try<AttachmentBaseResult> Create()
+        public override Try<IResult> Create()
         {
             VerifyData();
 
@@ -22,7 +23,7 @@ namespace EncompassLoadTest.DataInitialization.Creators
                     Data.FileNameWithExtension,
                     Data.Content);
 
-                return new AttachmentBaseResult(attachmentId);
+                return new AttachmentResult(attachmentId);
             };
         }
     }

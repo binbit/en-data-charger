@@ -1,8 +1,7 @@
 ﻿namespace EncompassLoadTest.DataInitialization
 {
-    public interface ICreator<in TData, TResult>
+    public interface ICreator
     {
-        void LoadData(string parentId, TData data);
-        Try<TResult> Create();
+        Try<IResult> Create();
     }
 }
