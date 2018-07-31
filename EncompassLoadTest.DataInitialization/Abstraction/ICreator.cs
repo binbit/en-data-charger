@@ -1,7 +1,9 @@
-﻿namespace EncompassLoadTest.DataInitialization
+﻿using Monad;
+
+namespace EncompassLoadTest.DataInitialization
 {
     public interface ICreator
     {
-        Try<IResult> Create();
+        Try<IResult> Create(string parentId);
     }
 }

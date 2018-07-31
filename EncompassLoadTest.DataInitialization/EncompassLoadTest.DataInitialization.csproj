@@ -6,6 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="EncompassLoadTest.DataInitialization.csproj.DotSettings" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="csharp-monad" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DocVelocity.Integration.Encompass.API\DocVelocity.Integration.Encompass.API.csproj" />
   </ItemGroup>
 

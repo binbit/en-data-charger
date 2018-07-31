@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using EncompassLoadTest.DataInitialization.Errors;
-using EncompassLoadTest.DataInitialization.Results;
-
-namespace EncompassLoadTest.DataInitialization
+﻿namespace EncompassLoadTest.DataInitialization.Results
 {
     public class DocumentResult : BaseResult
     {
         public string DocumentId => EntityId;
 
-        public DocumentResult(string documentId) : base(documentId)
+        public DocumentResult(string documentId, string parentId) : base(documentId, parentId)
         {
         }
     }

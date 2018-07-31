@@ -5,16 +5,18 @@ namespace EncompassLoadTest.DataInitialization
 {
     public abstract class BaseResult : IResult
     {
-        protected string EntityId { get; }
+        public string EntityId { get; }
+        public string ParentEntityId { get; }
 
         protected List<IResult> ResultCollection { get; }
 
         protected List<ResultError> ErrorCollection { get; }
 
-        protected BaseResult(string entityId)
+        protected BaseResult(string entityId, string parentEntityIdId)
         {
             CreationDate = DateTime.UtcNow;
             EntityId = entityId;
+            ParentEntityId = parentEntityIdId;
             ResultCollection = new List<IResult>();
             ErrorCollection = new List<ResultError>();
         }
