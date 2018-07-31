@@ -1,5 +1,6 @@
 ﻿using DocVelocity.Integration.Encompass.API;
 using EncompassLoadTest.DataInitialization.Results;
+using Monad;
 
 namespace EncompassLoadTest.DataInitialization.Creators
 {
@@ -10,7 +11,7 @@ namespace EncompassLoadTest.DataInitialization.Creators
         {
         }
 
-        public override Try<IResult> Create()
+        public override Try<IResult> Create(string parentId)
         {
             VerifyData();
 
@@ -23,7 +24,7 @@ namespace EncompassLoadTest.DataInitialization.Creators
                     Data.FileNameWithExtension,
                     Data.Content);
 
-                return new AttachmentResult(attachmentId);
+                return new AttachmentResult(attachmentId, parentId);
             };
         }
     }

@@ -59,15 +59,5 @@ namespace EncompassLoadTest.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] Affiliated_Business_Arrangement_Disclosure {
-            get {
-                object obj = ResourceManager.GetObject("Affiliated_Business_Arrangement_Disclosure", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }

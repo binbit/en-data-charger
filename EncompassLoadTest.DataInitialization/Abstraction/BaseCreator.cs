@@ -1,13 +1,14 @@
 ﻿using System;
 using DocVelocity.Integration.Encompass.API;
+using Monad;
 
 namespace EncompassLoadTest.DataInitialization
 {
     public abstract class BaseCreator<TData> : ICreator
     {
         protected readonly IEncompassClient Client;
-        protected TData Data;
-        protected string ParentId;
+        protected readonly TData Data;
+        protected readonly string ParentId;
 
         protected BaseCreator(IEncompassClient client, TData data, string parentId)
         {
@@ -25,6 +26,6 @@ namespace EncompassLoadTest.DataInitialization
                 throw new ArgumentNullException(nameof(ParentId));
         }
 
-        public abstract Try<IResult> Create();
+        public abstract Try<IResult> Create(string parentId);
     }
 }

@@ -1,5 +1,7 @@
 ﻿using DocVelocity.Integration.Encompass.API;
 using Elli.Api.Loans.EFolder.Model;
+using EncompassLoadTest.DataInitialization.Results;
+using Monad;
 
 namespace EncompassLoadTest.DataInitialization.Creators
 {
@@ -12,12 +14,14 @@ namespace EncompassLoadTest.DataInitialization.Creators
         {
         }
 
-        public override Try<IResult> Create()
+        public override Try<IResult> Create(string parentId)
         {
+            VerifyData();
+
             return () =>
             {
                 var documentId = Client.DocumentService.CreateDocument(ParentId, Data);
-                return new DocumentResult(documentId);
+                return new DocumentResult(documentId, parentId);
             };
         }
     }

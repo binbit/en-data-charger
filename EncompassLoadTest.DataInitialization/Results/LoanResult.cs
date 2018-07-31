@@ -4,7 +4,7 @@
     {
         public string LoanId => EntityId;
         
-        public LoanResult(string loanId) : base(loanId)
+        public LoanResult(string loanId, string parentId) : base(loanId, parentId)
         {
         }
     }
