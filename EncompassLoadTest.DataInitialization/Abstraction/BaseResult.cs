@@ -3,10 +3,13 @@ using System.Collections.Generic;
 
 namespace EncompassLoadTest.DataInitialization
 {
-    public abstract class BaseResult : IResult
+    public abstract class BaseResult<TResult> : IResult where TResult : IResult
     {
         public string EntityId { get; }
         public string ParentEntityId { get; }
+
+        public IReadOnlyCollection<IResult> Results => ResultCollection;
+        public IReadOnlyCollection<ResultError> Errors => ErrorCollection;
 
         protected List<IResult> ResultCollection { get; }
 
@@ -32,5 +35,7 @@ namespace EncompassLoadTest.DataInitialization
         {
             ErrorCollection.Add(error);
         }
+
+        public abstract IEnumerable<TResult> GetInneResults();
     }
 }

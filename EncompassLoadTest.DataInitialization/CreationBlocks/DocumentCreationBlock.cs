@@ -28,14 +28,14 @@ namespace EncompassLoadTest.DataInitialization.CreationBlocks
             for (var i = 0; i < _loadConfiguration.DocumentCountPerLoan; i++)
             {
                 var res = creator.Create(parentId);
-                res.Match(Success: r =>
+                res.Match(Success:async r =>
                     {
                         result.AddResult(r);
+                        await Task.Delay(_loadConfiguration.DocumentCreationDelay);
                         attTasks.Add(Task.Run(() => _attachmentCreationBlock.CreateAsync(r, parentId)));
                     },
                     Fail: f => result.AddError(new ResultError(parentId, f))).Invoke();
 
-                await Task.Delay(_loadConfiguration.DocumentCreationDelay);
             }
 
             await Task.WhenAll(attTasks);

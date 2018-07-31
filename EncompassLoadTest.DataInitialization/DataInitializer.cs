@@ -6,6 +6,7 @@ using DocVelocity.Integration.Encompass.API;
 using EncompassLoadTest.DataInitialization.CreationBlocks;
 using EncompassLoadTest.DataInitialization.Results;
 using Newtonsoft.Json;
+using NLog;
 
 namespace EncompassLoadTest.DataInitialization
 {
@@ -13,15 +14,18 @@ namespace EncompassLoadTest.DataInitialization
     {
         private readonly object _configuration;
         private readonly LoadConfiguration _loadConfiguration;
+        private readonly ILogger _logger;
 
         public DataInitializer(object configuration, string loadConfig)
         {
             _configuration = configuration;
             _loadConfiguration = JsonConvert.DeserializeObject<LoadConfiguration>(File.ReadAllText(loadConfig));
+            _logger = LogManager.GetLogger(nameof(DataInitializer));
         }
 
         public List<IResult> InitializeData()
         {
+            _logger.Info("Start data load");
             var tasks = new List<Task>();
             var results = new List<IResult>();
             for (int i = 0; i < _loadConfiguration.InstanceCount; i++)

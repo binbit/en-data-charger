@@ -1,10 +1,17 @@
-﻿namespace EncompassLoadTest.DataInitialization.Results
+﻿using System.Collections.Generic;
+
+namespace EncompassLoadTest.DataInitialization.Results
 {
-    public class AttachmentResult : BaseResult
+    public class AttachmentResult : BaseResult<NoResult>
     {
         public string AttachmentId => EntityId;
         public AttachmentResult(string attachmentId, string parentId) : base(attachmentId, parentId)
         {
+        }
+
+        public override IEnumerable<NoResult> GetInneResults()
+        {
+            return null;
         }
     }
 }
