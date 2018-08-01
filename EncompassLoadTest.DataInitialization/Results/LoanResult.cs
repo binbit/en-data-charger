@@ -10,10 +10,5 @@ namespace EncompassLoadTest.DataInitialization.Results
         public LoanResult(string loanId, string parentId) : base(loanId, parentId)
         {
         }
-
-        public override IEnumerable<DocumentResult> GetInneResults()
-        {
-            return ResultCollection.Cast<DocumentResult>();
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EncompassLoadTest.DataInitialization
 {
@@ -6,8 +7,10 @@ namespace EncompassLoadTest.DataInitialization
     {
         string EntityId { get; }
         string ParentEntityId { get; }
-        DateTime CreationDate { get; }
+        DateTime CreationDateUtc { get; }
         void AddResult(IResult result);
         void AddError(ResultError error);
+
+        IEnumerable<string> GetStringResult();
     }
 }

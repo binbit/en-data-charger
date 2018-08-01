@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EncompassLoadTest.DataInitialization
 {
@@ -17,14 +18,14 @@ namespace EncompassLoadTest.DataInitialization
 
         protected BaseResult(string entityId, string parentEntityIdId)
         {
-            CreationDate = DateTime.UtcNow;
+            CreationDateUtc = DateTime.UtcNow;
             EntityId = entityId;
             ParentEntityId = parentEntityIdId;
             ResultCollection = new List<IResult>();
             ErrorCollection = new List<ResultError>();
         }
 
-        public DateTime CreationDate { get; }
+        public DateTime CreationDateUtc { get; }
 
         public void AddResult(IResult result)
         {
@@ -36,6 +37,25 @@ namespace EncompassLoadTest.DataInitialization
             ErrorCollection.Add(error);
         }
 
-        public abstract IEnumerable<TResult> GetInneResults();
+        public IEnumerable<string> GetStringResult()
+        {
+            var resultStrings = new List<string>();
+            if (ResultCollection.Any())
+            {
+                foreach (var result in ResultCollection)
+                {
+                    foreach (var stringResult in result.GetStringResult())
+                    {
+                        resultStrings.Add($"{EntityId}|{CreationDateUtc:O}|{stringResult}");
+                    }
+                }
+            }
+            else
+            {
+                return new List<string> {$"{EntityId}|{CreationDateUtc:O}"};
+            }
+
+            return resultStrings;
+        }
     }
 }

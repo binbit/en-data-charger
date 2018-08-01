@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace EncompassLoadTest.DataInitialization.Results
@@ -9,11 +10,6 @@ namespace EncompassLoadTest.DataInitialization.Results
 
         public InitializationResult(string instanceId) : base(instanceId, string.Empty)
         {
-        }
-
-        public override IEnumerable<LoanResult> GetInneResults()
-        {
-            return ResultCollection.Cast<LoanResult>();
         }
     }
 }

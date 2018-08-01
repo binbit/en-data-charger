@@ -8,10 +8,5 @@ namespace EncompassLoadTest.DataInitialization.Results
         public AttachmentResult(string attachmentId, string parentId) : base(attachmentId, parentId)
         {
         }
-
-        public override IEnumerable<NoResult> GetInneResults()
-        {
-            return null;
-        }
     }
 }

@@ -10,10 +10,5 @@ namespace EncompassLoadTest.DataInitialization.Results
         public DocumentResult(string documentId, string parentId) : base(documentId, parentId)
         {
         }
-
-        public override IEnumerable<AttachmentResult> GetInneResults()
-        {
-            return ResultCollection.Cast<AttachmentResult>();
-        }
     }
 }
