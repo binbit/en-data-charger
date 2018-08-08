@@ -33,6 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="cloud.settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="load.configuration.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

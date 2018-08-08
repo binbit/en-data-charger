@@ -17,8 +17,7 @@ namespace EncompassLoadTest
             var initializer = new DataInitializer(config, "load.configuration.json");
             var results = initializer.InitializeData().Cast<InitializationResult>();
             var strBuilder = new StringBuilder(
-                "Instance Id|Create Date UTC|Loan ID|Create Date UTC|"
-                + "Document Id|Create Date UTC|Attachment Id|Create Date UTC\n");
+                "LoanID|LoanCreateDateUTC|DocumentId|DocumentCreateDateUTC|AttachmentId|AttachmentCreateDateUTC\n");
 
             foreach (var initializationResult in results)
             {
@@ -30,9 +29,6 @@ namespace EncompassLoadTest
 
             var resultPath = $"D:/result-{DateTime.Now.ToString("s").Replace(":", "-")}.csv";
             File.WriteAllText(resultPath, strBuilder.ToString());
-            File.ReadAllLines(resultPath);
-            var t = new DataTable();
-            
         }
     }
 }

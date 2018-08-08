@@ -37,7 +37,7 @@ namespace EncompassLoadTest.DataInitialization
             ErrorCollection.Add(error);
         }
 
-        public IEnumerable<string> GetStringResult()
+        public virtual IEnumerable<string> GetStringResult()
         {
             var resultStrings = new List<string>();
             if (ResultCollection.Any())
@@ -46,13 +46,13 @@ namespace EncompassLoadTest.DataInitialization
                 {
                     foreach (var stringResult in result.GetStringResult())
                     {
-                        resultStrings.Add($"{EntityId}|{CreationDateUtc:O}|{stringResult}");
+                        resultStrings.Add($"{EntityId}|{CreationDateUtc:yyyy-MM-dd hh:mm:ss.fffffff}|{stringResult}");
                     }
                 }
             }
             else
             {
-                return new List<string> {$"{EntityId}|{CreationDateUtc:O}"};
+                return new List<string> {$"{EntityId}|{CreationDateUtc:yyyy-MM-dd hh:mm:ss.fffffff}"};
             }
 
             return resultStrings;

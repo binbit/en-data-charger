@@ -4,4 +4,16 @@
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="7.1.1" />
+    <PackageReference Include="DocVelocity.Integration.Helpers.Logging.NLog" Version="1.0.3" />
+    <PackageReference Include="DocVelocity.Orchestration.SDK" Version="2.0.18-alpha-get-filed-0001" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DocVelocity.Integration.Encompass.API\DocVelocity.Integration.Encompass.API.csproj" />
+    <ProjectReference Include="..\EncompassLoadTest.DataInitialization\EncompassLoadTest.DataInitialization.csproj" />
+  </ItemGroup>
+
 </Project>
