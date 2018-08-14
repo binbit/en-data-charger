@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DocVelocity.Integration.Helpers.Logging.NLog" Version="1.0.3" />
     <PackageReference Include="Elli.Api" Version="1.2.1" />
   </ItemGroup>
 

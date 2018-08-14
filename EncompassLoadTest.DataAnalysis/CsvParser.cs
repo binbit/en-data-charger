@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using CsvHelper;
 
 namespace EncompassLoadTest.DataAnalysis
@@ -12,8 +13,9 @@ namespace EncompassLoadTest.DataAnalysis
             using (var reader = new StreamReader(filePath))
             using (var csv = new CsvReader(reader))
             {
+                csv.Configuration.Delimiter = "|";
                 csv.Configuration.HasHeaderRecord = hasHeader;
-                return csv.GetRecords<T>();
+                return csv.GetRecords<T>().ToList();
             }
         }
 

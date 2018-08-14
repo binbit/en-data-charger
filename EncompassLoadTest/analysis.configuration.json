@@ -1,4 +1,4 @@
 ﻿{
-  "uploadContainer": "aa_Upload_Container",
-  "destinationContainer":  "Bypass"
+  "uploadContainer": "aa_upload_to_DV",
+  "destinationContainer": "Bypass"
 }

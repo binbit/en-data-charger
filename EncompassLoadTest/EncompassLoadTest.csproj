@@ -10,6 +10,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DocVelocity.Integration.Helpers.Logging.NLog" Version="1.0.3" />
+    <PackageReference Include="NDesk.Options" Version="0.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EncompassLoadTest.DataAnalysis\EncompassLoadTest.DataAnalysis.csproj" />
     <ProjectReference Include="..\EncompassLoadTest.DataInitialization\EncompassLoadTest.DataInitialization.csproj" />
   </ItemGroup>
 
@@ -33,6 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="analysis.configuration.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="cloud.settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

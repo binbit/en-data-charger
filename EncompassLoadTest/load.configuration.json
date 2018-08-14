@@ -1,12 +1,12 @@
 ﻿{
-  "instanceCount": 10,
-  "loanNumberPerInstance": 2,
+  "instanceCount": 20,
+  "loanNumberPerInstance": 50,
   "loanCreationDelay": "00:00:01",
   "documentTitle": "Load test document",
-  "documentCountPerLoan": 2,
+  "documentCountPerLoan": 1,
   "documentCreationDelay": "00:00:02",
   "attachmentTitle": "Load test attachment",
-  "attachmentCountPerDocument": 2,
+  "attachmentCountPerDocument": 20,
   "attachmentCreationDelay": "00:00:02",
   "attachmentFilePath": "D:\\sample_docs\\Affiliated Business Arrangement Disclosure.pdf"
 }

@@ -4,7 +4,6 @@ namespace EncompassLoadTest.DataAnalysis
 {
     public class CompleteResult : InitResult
     {
-        public string NewDocumentId { get; set; }
         public string FolderId { get; set; }
         public DateTime? FolderCreateDateUtc { get; set; }
         public string MailItemId { get; set; }
@@ -13,6 +12,7 @@ namespace EncompassLoadTest.DataAnalysis
         public DateTime? DvDocumentCreateDateUtc { get; set; }
         public AttachmentState AttachmentState { get; set; }
         public AttachmentType AttachmentType { get; set; }
+        public string NewDocumentId { get; set; }
 
         public CompleteResult()
         {

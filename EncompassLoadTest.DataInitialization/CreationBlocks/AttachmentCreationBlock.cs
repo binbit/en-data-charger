@@ -25,11 +25,11 @@ namespace EncompassLoadTest.DataInitialization.CreationBlocks
 
             for (var i = 0; i < _loadConfiguration.AttachmentCountPerDocument; i++)
             {
+                //delay before creating attachment because API has some trouble with creating attachment immediately after document creation
+                await Task.Delay(_loadConfiguration.AttachmentCreationDelay);
                 var res = creator.Create(parentId);
                 res.Match(Success: result.AddResult,
                     Fail: f => result.AddError(new ResultError(parentId, f))).Invoke();
-
-                await Task.Delay(_loadConfiguration.AttachmentCreationDelay);
             }
 
             return result;

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EncompassLoadTest": {
+      "commandName": "Project",
+      "commandLineArgs": "-m analyse -lr \"D:/result-2018-08-10T11-21-04.csv\" -ar \"D:/\""
+    }
+  }
+}

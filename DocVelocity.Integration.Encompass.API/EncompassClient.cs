@@ -1,6 +1,5 @@
-﻿using System.Configuration;
-using System.Net;
-using DocVelocity.Integration.Encompass.API.Services;
+﻿using DocVelocity.Integration.Encompass.API.Services;
+using DocVelocity.Integration.Helpers.Logging;
 using Elli.Api.Base;
 
 namespace DocVelocity.Integration.Encompass.API
@@ -13,7 +12,7 @@ namespace DocVelocity.Integration.Encompass.API
         public ILockService LockService { get; }
         public IPipelineService PipelineService { get; }
 
-        public EncompassClient(object config)
+        public EncompassClient(object config, ILoggerFactory loggerFactory)
         {
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
@@ -31,7 +30,7 @@ namespace DocVelocity.Integration.Encompass.API
 
             LoanService = new LoanService(token);
             DocumentService = new DocumentService(token);
-            AttachmentService = new AttachmentService(token);
+            AttachmentService = new AttachmentService(token, loggerFactory);
         }
     }
 }

@@ -31,8 +31,8 @@ namespace EncompassLoadTest.DataInitialization.CreationBlocks
                 res.Match(Success:async r =>
                     {
                         result.AddResult(r);
-                        await Task.Delay(_loadConfiguration.DocumentCreationDelay);
                         attTasks.Add(Task.Run(() => _attachmentCreationBlock.CreateAsync(r, parentId)));
+                        await Task.Delay(_loadConfiguration.DocumentCreationDelay);
                     },
                     Fail: f => result.AddError(new ResultError(parentId, f))).Invoke();
 
@@ -45,6 +45,7 @@ namespace EncompassLoadTest.DataInitialization.CreationBlocks
 
         private EFolderDocumentContract GetData()
         {
+            var now = DateTime.Now;
             return new EFolderDocumentContract
             {
                 Title = _loadConfiguration.DocumentTitle,
@@ -52,12 +53,12 @@ namespace EncompassLoadTest.DataInitialization.CreationBlocks
                 ApplicationId = "All",
                 RequestedFrom = "User",
                 EmnSignature = "string",
-                DateRequested = DateTime.Now,
-                DateExpected = DateTime.Now,
-                DateReceived = DateTime.Now,
-                DateReviewed = DateTime.Now,
-                DateReadyForUw = DateTime.Now,
-                DateReadyToShip = DateTime.Now,
+                DateRequested = now,
+                DateExpected = now,
+                DateReceived = now,
+                DateReviewed = now,
+                DateReadyForUw = now,
+                DateReadyToShip = now,
                 Comments = new List<EFolderDocumentContractComments>
                 {
                     new EFolderDocumentContractComments
