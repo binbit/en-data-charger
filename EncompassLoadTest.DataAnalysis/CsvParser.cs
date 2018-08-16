@@ -14,6 +14,7 @@ namespace EncompassLoadTest.DataAnalysis
             using (var csv = new CsvReader(reader))
             {
                 csv.Configuration.Delimiter = "|";
+                csv.Configuration.MissingFieldFound = null;
                 csv.Configuration.HasHeaderRecord = hasHeader;
                 return csv.GetRecords<T>().ToList();
             }

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using DocVelocity.Integration.Encompass.API;
 using DocVelocity.Integration.Helpers.Logging;
 using DocVelocity.Orchestration.SDK;
@@ -15,20 +17,23 @@ namespace EncompassLoadTest.DataAnalysis
 {
     public class DataAnalyser
     {
+        private readonly ILoggerFactory _loggerFactory;
+        private readonly object _configuration;
         private readonly string _initResultPath;
         private readonly string _analysResultPath;
         private readonly Cloud _cloud;
-        private readonly EncompassClient _client;
         private readonly AnalysisConfiguration _analysisConfiguration;
         private readonly ILogger _logger;
-        private readonly List<CompleteResult> _completeResults;
-        private readonly List<LoanStatisticResult> _loanResults;
+        private readonly ConcurrentBag<CompleteResult> _completeResults;
+        private readonly ConcurrentBag<LoanStatisticResult> _loanResults;
 
         public DataAnalyser(ILoggerFactory loggerFactory, object configuration, string initResultPath,
             string analysResultPath, string analysisConfig, string cloudSettingsConfig)
         {
-            _completeResults = new List<CompleteResult>();
-            _loanResults = new List<LoanStatisticResult>();
+            _completeResults = new ConcurrentBag<CompleteResult>();
+            _loanResults = new ConcurrentBag<LoanStatisticResult>();
+            _loggerFactory = loggerFactory;
+            _configuration = configuration;
             _initResultPath = initResultPath;
             _analysResultPath = analysResultPath;
             _logger = loggerFactory.GetLogger(nameof(DataAnalyser));
@@ -52,7 +57,6 @@ namespace EncompassLoadTest.DataAnalysis
                 Retry = new RetrySettings()
 
             });
-            _client = new EncompassClient(configuration, loggerFactory);
         }
 
         public void WriteResult()
@@ -68,8 +72,11 @@ namespace EncompassLoadTest.DataAnalysis
         public void AnalysResults()
         {
             var initResults = CsvParser.GetRecordsFromCsv<InitResult>(_initResultPath, true);
-            foreach (var loanGroup in initResults.GroupBy(r => r.LoanId))
+            var loanGroups = initResults.GroupBy(r => r.LoanId);
+            Parallel.ForEach(loanGroups, new ParallelOptions{MaxDegreeOfParallelism = 8}, loanGroup =>
             {
+                var client = new EncompassClient(_configuration, _loggerFactory);
+
                 try
                 {
                     var loanResult = new LoanStatisticResult
@@ -86,16 +93,16 @@ namespace EncompassLoadTest.DataAnalysis
                         {
                             loanResult.FolderId = folderId;
                             loanResult.FolderCreateDateUtc = folder.DateCreated.ToUniversalTime();
-                            var documents = _client.DocumentService.GetLoanDocuments(loanId);
+                            var documents = client.DocumentService.GetLoanDocuments(loanId);
                             DateTime? lastAttachmentDate = null;
                             foreach (var document in documents)
                             {
                                 var attachmentRefs =
-                                    _client.DocumentService.GetAttachmentsRefs(document.DocumentId, loanId);
+                                    client.DocumentService.GetAttachmentsRefs(document.DocumentId, loanId);
                                 foreach (var attachmentRef in attachmentRefs)
                                 {
                                     var attachment =
-                                        _client.AttachmentService.GetAttachment(attachmentRef.EntityId, loanId);
+                                        client.AttachmentService.GetAttachment(attachmentRef.EntityId, loanId);
 
                                     if (lastAttachmentDate == null || lastAttachmentDate < attachment.DateCreated)
                                         lastAttachmentDate = attachment.DateCreated;
@@ -173,12 +180,14 @@ namespace EncompassLoadTest.DataAnalysis
                         }
                         else
                         {
-                            _completeResults.AddRange(loanGroup.Select(lg => new CompleteResult(lg)));
+                            loanGroup.Select(lg => new CompleteResult(lg)).ToList()
+                                .ForEach(l => _completeResults.Add(l));
                         }
                     }
                     else
                     {
-                        _completeResults.AddRange(loanGroup.Select(lg => new CompleteResult(lg)));
+                        loanGroup.Select(lg => new CompleteResult(lg)).ToList()
+                            .ForEach(l => _completeResults.Add(l));
                     }
 
                     _loanResults.Add(loanResult);
@@ -187,7 +196,7 @@ namespace EncompassLoadTest.DataAnalysis
                 {
                     _logger.Error(e);
                 }
-            }
+            });
         }
 
         private static AttachmentState GetAttachmentState(AnalysisConfiguration analysisConfiguration,

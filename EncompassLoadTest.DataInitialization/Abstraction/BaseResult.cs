@@ -46,13 +46,13 @@ namespace EncompassLoadTest.DataInitialization
                 {
                     foreach (var stringResult in result.GetStringResult())
                     {
-                        resultStrings.Add($"{EntityId}|{CreationDateUtc:yyyy-MM-dd hh:mm:ss.fffffff}|{stringResult}");
+                        resultStrings.Add($"{EntityId}|{CreationDateUtc:yyyy-MM-dd HH:mm:ss.fffffff}|{stringResult}");
                     }
                 }
             }
             else
             {
-                return new List<string> {$"{EntityId}|{CreationDateUtc:yyyy-MM-dd hh:mm:ss.fffffff}"};
+                return new List<string> {$"{EntityId}|{CreationDateUtc:yyyy-MM-dd HH:mm:ss.fffffff}"};
             }
 
             return resultStrings;
