@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,14 +16,15 @@ namespace EncompassLoadTest
         public enum Mode
         {
             Load,
-            Analyse
+            Analyse,
+            DvLoad
         }
 
         private static ILogger _logger;
         private static string _loadResultFilePath;
         private static Mode _mode;
         private static string _analysResultFilePath;
-        private static NLogLoggerFactory _loggerFactory;
+        private static ILoggerFactory _loggerFactory;
 
         private static bool PrepareOptions(string[] args)
         {
@@ -35,7 +35,7 @@ namespace EncompassLoadTest
             var p = new OptionSet()
             {
                 {
-                    "m|mode=", "Mode of tool. Use 'load' to load data to EN. Use 'analyse' to analyse results.",
+                    "m|mode=", "Mode of tool. Use 'load' to load data to EN.\nUse 'analyse' to analyse results.\nUse 'dvload' to load mailitems to DV.",
                     v =>
                     {
                         _mode = (Mode)Enum.Parse(typeof(Mode), v, true);
@@ -95,6 +95,8 @@ namespace EncompassLoadTest
                 case Mode.Analyse:
                     AnalysData(config);
                     break;
+                case Mode.DvLoad:
+                    throw new NotImplementedException();
                 default:
                     throw new ArgumentOutOfRangeException();
             }
